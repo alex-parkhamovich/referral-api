@@ -60,7 +60,7 @@ end
 # TODO:
 # DEVELOPMENT:
 # + UNIQ CODE instead of USER_ID
-# 2) USERS SHOW PAGE WITH LINK
+# + USERS index PAGE WITH uniq code
 # 3) RSPEC ALL STUFF
 # 4) EMAIL SENDING
 
