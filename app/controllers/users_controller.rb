@@ -1,11 +1,11 @@
-class RegistrationsController < ApplicationController
- skip_before_action :authenticate_request
+class UsersController < ApplicationController
+  skip_before_action :authenticate_request, only: :create
+
+  def show
+    render json: current_user
+  end
 
   def create
-    puts ' ' * 80
-    puts "USER RETURNED IN CONTROLLER: #{user.id}"
-    puts ' ' * 80
-
     if user.valid?
       Credits::Processor.new(new_user: user).run if user.referrer
 
@@ -18,7 +18,7 @@ class RegistrationsController < ApplicationController
   private
 
   def sign_up_params
-    params.permit(:email, :password, :referrer_id)
+    params.permit(:email, :password, :referred_by)
   end
 
   def user

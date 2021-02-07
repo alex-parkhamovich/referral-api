@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_07_105104) do
+ActiveRecord::Schema.define(version: 2021_02_07_145521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2021_02_07_105104) do
     t.bigint "referrer_id"
     t.integer "referral_points", default: 0
     t.integer "credits", default: 0
+    t.string "referral_code"
+    t.index ["referral_code"], name: "index_users_on_referral_code", unique: true
     t.index ["referrer_id"], name: "index_users_on_referrer_id"
   end
 

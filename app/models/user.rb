@@ -2,6 +2,7 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
   has_secure_password
+  has_secure_token :referral_code
 
   validates :email,
     presence: true,
@@ -15,21 +16,21 @@ end
 
 
 
-# - (UNIQ CODE) An existing user can create a referral to invite people, via a shareable sign-up link that contains a unique code
+# + An existing user can create a referral to invite people, via a shareable sign-up link that contains a unique code
 
 # + When 5 people sign up using that referral, the inviter gets $10.
 
 # + When somebody signs up referencing a referral, that person gets $10 on signup.
 # Signups that do not reference referrals do not get any credit.
 
-# ? Multiple inviters may invite the same person. Only one inviter can earn credit for a
+# - (EMAIL) Multiple inviters may invite the same person. Only one inviter can earn credit for a
 # particular user signup. An inviter only gets credit when somebody they invited signs up; they do not get credit if they invite somebody who already has an account.
 
 
 
 # Use cases:
 
-# - (UNIQ CODE, EMAIL) Alice, an existing user, creates a referral. She gets a link that has a unique code in it.
+# - (SHOW PAGE, EMAIL) Alice, an existing user, creates a referral. She gets a link that has a unique code in it.
 # She emails that link to 5 of her friends.
 
 # + Bob, one of Alice’s friends, clicks on the link. He goes through the signup process to
@@ -58,7 +59,7 @@ end
 
 # TODO:
 # DEVELOPMENT:
-# 1) UNIQ CODE instead of USER_ID 
+# + UNIQ CODE instead of USER_ID
 # 2) USERS SHOW PAGE WITH LINK
 # 3) RSPEC ALL STUFF
 # 4) EMAIL SENDING

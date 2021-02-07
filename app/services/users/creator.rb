@@ -5,14 +5,7 @@ module Users
     end
 
     def create
-      puts ' ' * 80
-      puts "USER CREATED: #{user.id}"
-      puts ' ' * 80
-
       user.update_attributes(referrer: referrer) if referrer
-      puts ' ' * 80
-      puts "REFERRER ASSISGNED: #{referrer.id}" if referrer
-      puts ' ' * 80
 
       user
     end
@@ -22,7 +15,7 @@ module Users
     attr_accessor :params
 
     def referrer
-      @referrer ||= User.find_by_id(params[:referrer_id])
+      @referrer ||= User.find_by(referral_code: params[:referred_by])
     end
 
     def user

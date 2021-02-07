@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  post 'authenticate', to: 'authentication#create'
-  post 'sign_up', to: 'registrations#create'
+  post 'sign_in', to: 'sessions#create'
+  post 'sign_up', to: 'users#create'
+
+  resources :users, only: :show
 end
