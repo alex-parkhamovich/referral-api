@@ -11,7 +11,7 @@ module Users
 
       user.update_attributes(referrer: referrer) if referrer
       puts ' ' * 80
-      puts "REFERRER ASSISGNED: #{referrer.id}"
+      puts "REFERRER ASSISGNED: #{referrer.id}" if referrer
       puts ' ' * 80
 
       user
