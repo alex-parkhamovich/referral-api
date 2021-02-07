@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthenticateUser
   def initialize(email, password)
     self.email = email

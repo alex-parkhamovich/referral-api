@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
@@ -15,6 +17,26 @@ class User < ApplicationRecord
 end
 
 
+# RSPEC
+
+# MODEL
+# + user model
+
+# CONTROLLER
+# - sessions_controller
+# - users_controller
+# - application_controller
+
+# SERVICES
+# - credits::processor service
+# - users::creator service
+# - authenticate_user service
+# - authorize_api service
+
+
+
+
+
 
 # + An existing user can create a referral to invite people, via a shareable sign-up link that contains a unique code
 
@@ -30,7 +52,7 @@ end
 
 # Use cases:
 
-# - (SHOW PAGE, EMAIL) Alice, an existing user, creates a referral. She gets a link that has a unique code in it.
+# - (EMAIL) Alice, an existing user, creates a referral. She gets a link that has a unique code in it.
 # She emails that link to 5 of her friends.
 
 # + Bob, one of Alice’s friends, clicks on the link. He goes through the signup process to
@@ -62,10 +84,11 @@ end
 # + UNIQ CODE instead of USER_ID
 # + USERS index PAGE WITH uniq code
 # 3) RSPEC ALL STUFF
-# 4) EMAIL SENDING
+# 4) REFACTORING AUTH STUFF
+# 5) EMAIL SENDING
 
 # DEPLOY:
 # 1) push Git
 # 2) push Heroku
 # 3) Documentation for FE
-# 4) RADME
+# 4) README

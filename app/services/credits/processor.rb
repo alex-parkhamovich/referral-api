@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Credits
   class Processor
     BONUS_CREDITS_AMOUNT = 10
