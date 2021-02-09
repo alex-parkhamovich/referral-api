@@ -1,24 +1,104 @@
-# README
+# Referral API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## API Documentation
 
-Things you may want to cover:
+### Create new user:
+```
+POST /sign_up
 
-* Ruby version
+request payload:
+{
+  "email": "",
+  "password": ""
+}
 
-* System dependencies
+response example:
+{
+  "id": ""
+  "email": "",
+  "password": "",
+  "created_at": "2021-02-09T11:10:01.575Z",
+  "updated_at": "2021-02-09T11:10:01.621Z",
+  "referrer_id": 1,
+  "referral_points": 0,
+  "credits": 0,
+  "referral_code": ""
+}
 
-* Configuration
+```
 
-* Database creation
+### Sign In with User credentials:
+```
+POST /sign_in
 
-* Database initialization
+request payload:
+{
+  "email": "",
+  "password": ""
+}
 
-* How to run the test suite
+response example:
+{
+  "auth_token": ""
+}
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Get Users data with referral_link from Users page
+```
+GET /users
 
-* Deployment instructions
+request headers:
+{
+  "Authorization": "auth_token" # sent from /sign_in emdpoint
+}
 
-* ...
+response example:
+{
+    "email": "",
+    "credist": 10,
+    "referral_points": 2,
+    "referral_link": "https://referral-api-alexp.herokuapp.com/sign_up?referred_by=zKJjLVQhZHGVCcRR6NiPjD22"
+}
+```
+
+### Sign Up with referral_link
+```
+POST /sign_up?referred_by=zKJjLVQhZHGVCcRR6NiPjD22
+
+request payload:
+{
+  "email": "",
+  "password": ""
+}
+
+response example:
+{
+  "id": ""
+  "email": "",
+  "password": "",
+  "created_at": "2021-02-09T11:10:01.575Z",
+  "updated_at": "2021-02-09T11:10:01.621Z",
+  "referrer_id": 1,
+  "referral_points": 0,
+  "credits": 10,
+  "referral_code": ""
+}
+
+```
+
+## Getting Started
+Run the setup script to install dependencies and get the app running on your machine:
+
+```
+cd referral-api
+bundle install
+rails db:setup
+```
+
+## Specs & Linting
+`rspec`
+
+## License
+
+Referral API was created and is maintained by Alex P.
+
