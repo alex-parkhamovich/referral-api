@@ -17,7 +17,9 @@ class User < ApplicationRecord
 end
 
 # DEPLOY:
-# 1) push Git
+# + push Git
 # 2) push Heroku
 # 3) Documentation for FE
 # 4) README
+# 5) CLEANUP CODEBASE
+# 6) last tests before sending
