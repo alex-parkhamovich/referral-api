@@ -10,7 +10,7 @@ class Authenticator
     return unless user
     return unless authenticate_user
 
-    JsonWebToken.encode(user_id: user.id)
+    ::JsonWebToken.encode(user_id: user.id)
   end
 
   private
