@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JsonWebToken
  class << self
    def encode(payload, expire_in = 24.hours.from_now)
