@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  skip_before_action :authenticate_request
+  skip_before_action :authorize_request
 
   def create
     if auth_token
@@ -13,10 +13,14 @@ class SessionsController < ApplicationController
 
   private
 
+  def sign_in_params
+    params.permit(:email, :password)
+  end
+
   def auth_token
-    @auth_token ||= AuthenticateUser.new(
-      params[:email],
-      params[:password]
+    @auth_token ||= Authenticator.new(
+      email: sign_in_params[:email],
+      password: sign_in_params[:password]
     ).call
   end
 end

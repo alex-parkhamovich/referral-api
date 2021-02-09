@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AuthorizeApiRequest
+class Authorizer
   def initialize(headers: {})
     self.headers = headers
   end
@@ -16,7 +16,7 @@ class AuthorizeApiRequest
   attr_accessor :headers
 
   def authorized_user
-    @user ||= User.find(decoded_auth_token[:user_id])
+    @user ||= User.find_by_id(decoded_auth_token[:user_id])
   end
 
   def decoded_auth_token
@@ -24,10 +24,8 @@ class AuthorizeApiRequest
   end
 
   def http_auth_header
-    if headers['Authorization'].present?
-      return headers['Authorization'].split(' ').last
-    else
-      raise 'Missing token'
-    end
+    return unless headers['Authorization'].present?
+    
+    headers['Authorization'].split(' ').last
   end
 end

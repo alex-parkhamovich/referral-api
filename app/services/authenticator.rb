@@ -1,23 +1,24 @@
 # frozen_string_literal: true
 
-class AuthenticateUser
-  def initialize(email, password)
+class Authenticator
+  def initialize(email:, password:)
     self.email = email
     self.password = password
   end
 
   def call
-    JsonWebToken.encode(user_id: authenticated_user.id)
+    return unless user
+    return unless authenticate_user
+
+    JsonWebToken.encode(user_id: user.id)
   end
 
   private
 
   attr_accessor :email, :password
 
-  def authenticated_user
-    return user if user.authenticate(password)
-
-    raise 'Invalid credentials'
+  def authenticate_user
+    user.authenticate(password)
   end
 
   def user

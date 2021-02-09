@@ -23,15 +23,15 @@ end
 # + user model
 
 # CONTROLLER
-# - sessions_controller
-# - users_controller
-# - application_controller
+# + sessions_controller
+# + users_controller
 
 # SERVICES
-# - credits::processor service
-# - users::creator service
-# - authenticate_user service
-# - authorize_api service
+# + credits::processor service
+# + users::creator service
+# + users::responder service
+# + authenticator service
+# + authorizer service
 
 
 
@@ -45,14 +45,14 @@ end
 # + When somebody signs up referencing a referral, that person gets $10 on signup.
 # Signups that do not reference referrals do not get any credit.
 
-# - (EMAIL) Multiple inviters may invite the same person. Only one inviter can earn credit for a
+# + Multiple inviters may invite the same person. Only one inviter can earn credit for a
 # particular user signup. An inviter only gets credit when somebody they invited signs up; they do not get credit if they invite somebody who already has an account.
 
 
 
 # Use cases:
 
-# - (EMAIL) Alice, an existing user, creates a referral. She gets a link that has a unique code in it.
+# + Alice, an existing user, creates a referral. She gets a link that has a unique code in it.
 # She emails that link to 5 of her friends.
 
 # + Bob, one of Alice’s friends, clicks on the link. He goes through the signup process to
@@ -83,9 +83,11 @@ end
 # DEVELOPMENT:
 # + UNIQ CODE instead of USER_ID
 # + USERS index PAGE WITH uniq code
-# 3) RSPEC ALL STUFF
-# 4) REFACTORING AUTH STUFF
-# 5) EMAIL SENDING
+# + RSPEC ALL STUFF instead of AUTH services
+# + REFACTORING AUTH STUFF
+# 5) RSPEC AUTH STUFF
+# 6) CHANGE localohost:3000 to APPLICATION_HOST (add application.yml)
+# 7) users#index spec + responder + responder spec
 
 # DEPLOY:
 # 1) push Git

@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: :create
+  skip_before_action :authorize_request, only: :create
 
   def index
-    render json: current_user
+    render json: Users::Responder.new(user: current_user).run
   end
 
   def create
     if user.valid?
       Credits::Processor.new(new_user: user).run if user.referrer
 
-      render json: user
+      render json: user, status: :created
     else
-      render json: { errors: user.errors }
+      render json: { errors: user.errors }, status: 400
     end
   end
 
