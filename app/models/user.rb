@@ -18,7 +18,7 @@ end
 
 # DEPLOY:
 # + push Git
-# REFACTOR JWT LIB
+# + REFACTOR JWT LIB
 # 2) push Heroku
 # 3) Documentation for FE
 # 4) README
