@@ -24,7 +24,7 @@ module Users
     end
 
     def referral_link
-      "localhost:3000/sign_up?referred_by=#{user.referral_code}"
+      ENV.fetch('HOST') + "/sign_up?referred_by=#{user.referral_code}"
     end
   end
 end
