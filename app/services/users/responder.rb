@@ -17,6 +17,8 @@ module Users
     def responder_attributes
       {
         email: user.email,
+        credist: user.credits,
+        referral_points: user.referral_points,
         referral_link: referral_link
       }
     end

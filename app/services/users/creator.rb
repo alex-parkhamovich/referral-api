@@ -19,6 +19,8 @@ module Users
     attr_accessor :params
 
     def referrer
+      return unless params[:referred_by]
+
       @referrer ||= User.find_by(referral_code: params[:referred_by])
     end
 

@@ -18,6 +18,8 @@ RSpec.describe 'Access Users page', type: :request do
       it 'returns Users referral_link' do
         expected_response = {
           email: user.email,
+          credist: user.credits,
+          referral_points: user.referral_points,
           referral_link: referral_link
         }
 
